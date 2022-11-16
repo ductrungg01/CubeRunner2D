@@ -62,4 +62,9 @@ public class GameController : MonoBehaviour
 
         _ui.ShowGameOverPanel(isGameover, score);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
