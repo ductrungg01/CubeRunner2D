@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     float spawnDownTime = 2.7f;
 
     int score;
-    bool isGameover;
+    public bool isGameover;
 
     UIManager _ui;
     Cube _cube;
@@ -40,6 +40,8 @@ public class GameController : MonoBehaviour
 
     public void IncScore()
     {
+        if (isGameover) return;
+
         score++;
         _ui.SetScore(score);
     }

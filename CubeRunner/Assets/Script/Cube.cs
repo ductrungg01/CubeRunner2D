@@ -12,6 +12,10 @@ public class Cube : MonoBehaviour
 
     GameController _gc;
 
+    public AudioSource aus;
+    public AudioClip jump;
+    public AudioClip lose;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,11 @@ public class Cube : MonoBehaviour
             _rb.AddForce(Vector2.up * new Vector2(0, heightOfJump));
 
             isOnTheGround = false;
+
+            if (aus != null && jump != null && !_gc.isGameover)
+            {
+                aus.PlayOneShot(jump);
+            }
         }
     }
 
@@ -37,6 +46,12 @@ public class Cube : MonoBehaviour
         if (collision.CompareTag("Obstacle"))
         {
             Debug.Log("GameOver");
+
+            if (aus != null && lose != null && !_gc.isGameover)
+            {
+                aus.PlayOneShot(lose);
+            }
+
             _gc.SetGameoverState(true);
         }
     }
