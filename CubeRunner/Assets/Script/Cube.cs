@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    public int heightOfJump = 480;
+    public int heightOfJump = 500;
     public int score = 0;
     Rigidbody2D _rb;
     bool isOnTheGround;

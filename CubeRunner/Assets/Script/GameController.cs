@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject obstacle;
+    float spawnTime;
+    float spawnDownTime = 2.7f;
+
     UIManager _ui;
     Cube _cube;
 
@@ -12,16 +16,30 @@ public class GameController : MonoBehaviour
     {
         _cube = FindObjectOfType<Cube>();
         _ui = FindObjectOfType<UIManager>();
+
+        spawnTime = spawnDownTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        _ui.SetScore(_cube.score);
+        spawnTime -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (spawnTime <= 0)
         {
-            _ui.ShowGameOverPanel(true, _cube.score);
+            spawnTime = spawnDownTime;
+
+            SpawnObstacle();
+        }
+    }
+
+    void SpawnObstacle()
+    {
+        Vector2 pos = new Vector2(14, Random.Range(-3.5f, -2.0f));
+
+        if (obstacle != null)
+        {
+            Instantiate(obstacle, pos, Quaternion.identity);
         }
     }
 }
