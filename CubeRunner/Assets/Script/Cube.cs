@@ -26,18 +26,23 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isKeyJumpPressed = Input.GetKeyDown(KeyCode.Space);
+        bool isJump = Input.GetKeyDown(KeyCode.Space);
 
-        if (isKeyJumpPressed && isOnTheGround)
+        if (isJump && isOnTheGround)
         {
-            _rb.AddForce(Vector2.up * new Vector2(0, heightOfJump));
+            Jump();
+        }
+    }
 
-            isOnTheGround = false;
+    public void Jump()
+    {
+        _rb.AddForce(Vector2.up * new Vector2(0, heightOfJump));
 
-            if (aus != null && jump != null && !_gc.isGameover)
-            {
-                aus.PlayOneShot(jump);
-            }
+        isOnTheGround = false;
+
+        if (aus != null && jump != null && !_gc.isGameover)
+        {
+            aus.PlayOneShot(jump);
         }
     }
 
